@@ -32,3 +32,19 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "11433:1433"
+  blazor:
+    build:
+      context: ../blazor-wasm-boilerplate
+      dockerfile: Dockerfile
+    container_name: RhHERO-WASM
+    environment:
+      - "ASPNETCORE_Kestrel__Certificates__Default__Password=SuperSecurePassword123!"
+      - "ASPNETCORE_Kestrel__Certificates__Default__Path=/https/FSH.Host.pfx"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    ports:
+      - "5001:5001"
+      - "5002:5002"
+    depends_on:
+      - api
+    restart: on-failure
