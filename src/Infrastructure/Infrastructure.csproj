@@ -63,6 +63,12 @@
         <ProjectReference Include="..\Core\Domain\Domain.csproj" />
     </ItemGroup>
     <ItemGroup>
+      <None Remove="FunCenter\" />
+    </ItemGroup>
+    <ItemGroup>
         <None Update="Catalog\*.json" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="FunCenter\" />
     </ItemGroup>
 </Project>

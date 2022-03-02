@@ -16,4 +16,16 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
         <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <None Remove="WholeGame\" />
+      <None Remove="WholeGame\LuckyFruit\" />
+      <None Remove="WholeGame\MotorRacing\" />
+      <None Remove="FunCenter\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="WholeGame\" />
+      <Folder Include="WholeGame\LuckyFruits\" />
+      <Folder Include="WholeGame\MotorRacings\" />
+      <Folder Include="FunCenter\" />
+    </ItemGroup>
 </Project>
