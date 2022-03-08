@@ -24,8 +24,6 @@
         <ProjectReference Include="..\Migrators\Migrators.MSSQL\Migrators.MSSQL.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <None Remove="Controllers\WholeGame\" />
-      <None Remove="Controllers\InteractGame\" />
       <None Remove="Controllers\FunCenter\" />
     </ItemGroup>
     <ItemGroup>
@@ -49,8 +47,6 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Controllers\WholeGame\" />
-      <Folder Include="Controllers\InteractGame\" />
       <Folder Include="Controllers\FunCenter\" />
     </ItemGroup>
 </Project>

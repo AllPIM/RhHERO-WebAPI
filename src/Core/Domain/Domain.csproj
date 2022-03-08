@@ -11,11 +11,9 @@
       <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <None Remove="WholeGame\" />
       <None Remove="FunCenter\" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="WholeGame\" />
       <Folder Include="FunCenter\" />
     </ItemGroup>
 </Project>

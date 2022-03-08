@@ -17,15 +17,15 @@
         <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <None Remove="WholeGame\" />
       <None Remove="WholeGame\LuckyFruit\" />
       <None Remove="WholeGame\MotorRacing\" />
       <None Remove="FunCenter\" />
+      <None Remove="FunCenter\MotorRacings\" />
+      <None Remove="FunCenter\LuckyFruits\" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="WholeGame\" />
-      <Folder Include="WholeGame\LuckyFruits\" />
-      <Folder Include="WholeGame\MotorRacings\" />
       <Folder Include="FunCenter\" />
+      <Folder Include="FunCenter\MotorRacings\" />
+      <Folder Include="FunCenter\LuckyFruits\" />
     </ItemGroup>
 </Project>

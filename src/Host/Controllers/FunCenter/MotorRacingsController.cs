@@ -1,4 +1,4 @@
-﻿using FSH.WebApi.Application.WholeGame.MotorRacings;
+﻿using FSH.WebApi.Application.FunCenter.MotorRacings;
 
 namespace FSH.WebApi.Host.Controllers.WholeGame;
 

@@ -1,9 +1,12 @@
-﻿namespace FSH.WebApi.Domain.WholeGame;
+﻿namespace FSH.WebApi.Domain.FunCenter;
 
 public class LuckyFruit : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; }
     public string? Description { get; private set; }
+
+    public IList<LuckyFruitBet>? LuckyFruitBets { get; set; } = new List<LuckyFruitBet>();
+    public IList<LuckyFruitReward>? LuckyFruitRewards { get; set; } = new List<LuckyFruitReward>();
 
     public LuckyFruit(string name, string? description)
     {

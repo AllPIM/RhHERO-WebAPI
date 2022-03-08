@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.WholeGame.MotorRacings;
+namespace FSH.WebApi.Application.FunCenter.MotorRacings;
 
 public class MotorRacingDto : IDto
 {
