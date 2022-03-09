@@ -39,13 +39,11 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<MotorRacingReward> MotoRacingRewards => Set<MotorRacingReward>();
     public DbSet<MotorRacingIncome> MotorRacingIncomes => Set<MotorRacingIncome>();
 
-
     public DbSet<LuckyFruit> LuckyFruits => Set<LuckyFruit>();
     public DbSet<LuckyFruitTrack> LuckyFruitTracks => Set<LuckyFruitTrack>();
     public DbSet<LuckyFruitBet> LuckyFruitBets => Set<LuckyFruitBet>();
     public DbSet<LuckyFruitReward> LuckyFruitRewards => Set<LuckyFruitReward>();
     public DbSet<LuckyFruitIncome> LuckyFruitIncome => Set<LuckyFruitIncome>();
-
 
     public DbSet<LuckyBag> LuckyBags => Set<LuckyBag>();
     public DbSet<LuckyBagRobber> LuckyBagRobbers => Set<LuckyBagRobber>();

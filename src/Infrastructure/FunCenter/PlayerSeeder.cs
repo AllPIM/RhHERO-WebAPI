@@ -1,5 +1,6 @@
 using System.Reflection;
 using FSH.WebApi.Application.Common.Interfaces;
+using FSH.WebApi.Domain.Common;
 using FSH.WebApi.Domain.FunCenter;
 using FSH.WebApi.Infrastructure.Persistence.Context;
 using FSH.WebApi.Infrastructure.Persistence.Initialization;
@@ -22,43 +23,61 @@ public class PlayerSeeder : ICustomSeeder
 
     public async Task InitializeAsync(CancellationToken cancellationToken)
     {
-        string? path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        if (!_db.Games.Any())
-        {
-            _logger.LogInformation("Started to Seed Games.");
-
-            string gameData = await File.ReadAllTextAsync(path + "/Catalog/games.json", cancellationToken);
-            var games = _serializerService.Deserialize<List<Game>>(gameData);
-
-            if (games != null)
-            {
-                foreach (var game in games)
-                {
-                    await _db.Games.AddAsync(game, cancellationToken);
-                }
-            }
-
-            await _db.SaveChangesAsync(cancellationToken);
-            _logger.LogInformation("Seeded Games.");
-        }
-
         if (!_db.Players.Any())
         {
             _logger.LogInformation("Started to Seed Players.");
 
-            string playerData = await File.ReadAllTextAsync(path + "/Catalog/players.json", cancellationToken);
-            var players = _serializerService.Deserialize<List<Player>>(playerData);
-
-            if (players != null)
+            var player01 = new Player
             {
-                foreach (var player in players)
-                {
-                    await _db.Players.AddAsync(player, cancellationToken);
-                }
-            }
+                Name = "A",
+                NickName = "AA",
+                Os = Domain.Common.OsType.iOS,
+                Type = UserType.Normal
+            };
 
-            await _db.SaveChangesAsync(cancellationToken);
+            var player02 = new Player
+            {
+                Name = "B",
+                NickName = "BB",
+                Os = Domain.Common.OsType.iOS,
+                Type = UserType.Normal
+            };
+
+            var player03 = new Player
+            {
+                Name = "C",
+                NickName = "CC",
+                Os = Domain.Common.OsType.iOS,
+                Type = UserType.Normal
+            };
+
+            var player04 = new Player
+            {
+                Name = "D",
+                NickName = "DD",
+                Os = Domain.Common.OsType.iOS,
+                Type = UserType.Normal
+            };
+
+            _db.Players.Add(player01);
+            _db.Players.Add(player02);
+            _db.Players.Add(player03);
+            _db.Players.Add(player04);
+
+            await _db.SaveChangesAsync();
             _logger.LogInformation("Seeded Players.");
+
+            var timeline01 = new Timeline
+            {
+                Name = "TT 1",
+                PlayerId = player01.Id,
+                Type = UserType.Normal
+            };
+
+            _db.Timelines.Add(timeline01);
+
+            await _db.SaveChangesAsync();
+            _logger.LogInformation("Seeded Timeline.");
         }
     }
 }

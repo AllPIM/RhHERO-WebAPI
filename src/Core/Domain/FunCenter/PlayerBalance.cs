@@ -2,7 +2,7 @@
 
 public class PlayerBalance : AuditableEntity, IAggregateRoot
 {
-    public Guid PlayerId { get; private set; }
+    public Guid PlayerId { get; set; }
     public virtual Player Player { get; private set; } = default!;
 
     public OsType Os { get; set; }

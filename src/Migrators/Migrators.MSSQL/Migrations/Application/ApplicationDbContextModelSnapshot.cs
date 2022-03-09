@@ -1253,7 +1253,7 @@ namespace Migrators.MSSQL.Migrations.Application
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<Guid?>("PlayerId")
+                    b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TenantId")
@@ -1879,9 +1879,13 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Timeline", b =>
                 {
-                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", null)
+                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", "Player")
                         .WithMany("Timelines")
-                        .HasForeignKey("PlayerId");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Infrastructure.Identity.ApplicationRoleClaim", b =>

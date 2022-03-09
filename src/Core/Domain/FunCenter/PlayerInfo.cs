@@ -3,7 +3,7 @@
 public class PlayerInfo : AuditableEntity, IAggregateRoot
 {
     public Guid PlayerId { get; set; }
-    public virtual Player Player { get; set; } = default!;
+    public virtual Player Player { get; private set; } = default!;
 
     public string? Name { get; set; }
     public string? NickName { get; set; }
