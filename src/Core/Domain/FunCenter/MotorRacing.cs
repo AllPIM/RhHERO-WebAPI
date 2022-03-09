@@ -2,22 +2,14 @@
 
 public class MotorRacing : AuditableEntity, IAggregateRoot
 {
-    public string Name { get; private set; }
-    public string? Description { get; private set; }
+    public string? ReportDate { get; set; }
+    public int? Round { get; set; }
+    public int? Fee { get; set; }
+    public int? Tracks { get; set; }
+    public int? Winner { get; set; }
 
     public IList<MotorRacingBet>? MotorRacingBets { get; set; } = new List<MotorRacingBet>();
     public IList<MotorRacingReward>? MotorRacingRewards { get; set; } = new List<MotorRacingReward>();
-
-    public MotorRacing(string name, string? description)
-    {
-        Name = name;
-        Description = description;
-    }
-
-    public MotorRacing Update(string? name, string? description)
-    {
-        if (name is not null && Name?.Equals(name) is not true) Name = name;
-        if (description is not null && Description?.Equals(description) is not true) Description = description;
-        return this;
-    }
+    public IList<MotorRacingIncome>? MotorRacingIncomes { get; set; } = new List<MotorRacingIncome>();
+    public IList<MotorRacingTrack>? MotorRacingTracks { get; set; } = new List<MotorRacingTrack>();
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Migrators.MSSQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220308183700_Create Bots & Players")]
+    [Migration("20220309112800_Create Bots & Players")]
     partial class CreateBotsPlayers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace Migrators.MSSQL.Migrations.Application
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("Catalog")
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -131,13 +131,10 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("AccessOs")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AccessToken")
+                    b.Property<string>("AccessCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("AndroidBalance")
+                    b.Property<int?>("AccessOs")
                         .HasColumnType("int");
 
                     b.Property<Guid>("CreatedBy")
@@ -158,28 +155,16 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("LastQueried")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("StartType")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
-
-                    b.Property<int?>("iOSBalance")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -196,7 +181,7 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("BotId")
+                    b.Property<Guid>("BotId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CreatedBy")
@@ -211,8 +196,8 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("GameId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Game")
+                        .HasColumnType("int");
 
                     b.Property<int>("GameMode")
                         .HasColumnType("int");
@@ -232,129 +217,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasIndex("BotId");
 
-                    b.HasIndex("GameId");
-
                     b.ToTable("BotGame", "FunCenter");
-
-                    b.HasAnnotation("Finbuckle:MultiTenant", true);
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Game", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("GameType")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenantId")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Games", "FunCenter");
-
-                    b.HasAnnotation("Finbuckle:MultiTenant", true);
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.LogSignIn", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("Game")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IP")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Language")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Os")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("PlayerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("RoomId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Round")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SceneId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SceneName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TenantId")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerId");
-
-                    b.ToTable("LogSignIn", "FunCenter");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -388,8 +251,7 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -513,8 +375,8 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Fee")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
@@ -522,15 +384,25 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.Property<int?>("Mode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReportDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Round")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Slots")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("Winner")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -544,6 +416,12 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ChargeOs")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Chips")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -568,6 +446,9 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Slot")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -591,6 +472,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Benefits")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -615,10 +499,19 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int>("TotalBets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalRewards")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -637,6 +530,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Bonus")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -660,6 +556,12 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Spent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -683,6 +585,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Chances")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -703,6 +608,9 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.Property<Guid>("LuckyFruitId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Odds")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -736,8 +644,8 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Fee")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
@@ -745,15 +653,22 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                    b.Property<string>("ReportDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Round")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("Tracks")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Winner")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -767,6 +682,12 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ChargeOs")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Chips")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -796,6 +717,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int>("Track")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -814,6 +738,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Benefits")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -838,10 +765,19 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int>("TotalBets")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalRewards")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -860,6 +796,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Bonus")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -883,6 +822,12 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Spent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -918,19 +863,34 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Lapses")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("Motions")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("MotorRacingId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Seconds")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Speeds")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int?>("Track")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -947,6 +907,9 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("ChargeOs")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -958,6 +921,9 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Game")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
@@ -988,6 +954,15 @@ namespace Migrators.MSSQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Balance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ChargeOs")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -1000,14 +975,35 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Game")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Operator")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Reason")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReportDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Round")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -1028,9 +1024,6 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Avatar")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -1053,19 +1046,16 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NickName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
-                    b.Property<int>("Os")
+                    b.Property<int>("Tag")
                         .HasColumnType("int");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1142,31 +1132,46 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ExpDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Experience")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("LastModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
+                    b.Property<int?>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LevelDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MBIT")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MBITDate")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NickName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Os")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RankDate")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1224,6 +1229,77 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
 
+            modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.SignInLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LoginOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LogoutOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Os")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("RoomId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SceneId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SceneName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenantId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("SignInLogs", "FunCenter");
+
+                    b.HasAnnotation("Finbuckle:MultiTenant", true);
+                });
+
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Timeline", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1252,8 +1328,7 @@ namespace Migrators.MSSQL.Migrations.Application
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("PlayerId")
                         .HasColumnType("uniqueidentifier");
@@ -1262,9 +1337,6 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1628,28 +1700,13 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.BotGame", b =>
                 {
-                    b.HasOne("FSH.WebApi.Domain.FunCenter.Bot", null)
+                    b.HasOne("FSH.WebApi.Domain.FunCenter.Bot", "Bot")
                         .WithMany("BotGames")
-                        .HasForeignKey("BotId");
-
-                    b.HasOne("FSH.WebApi.Domain.FunCenter.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
+                        .HasForeignKey("BotId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Game");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.LogSignIn", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", "Player")
-                        .WithMany("LogSignIns")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Player");
+                    b.Navigation("Bot");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.LuckyBagReturn", b =>
@@ -1661,7 +1718,7 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired();
 
                     b.HasOne("FSH.WebApi.Domain.FunCenter.Order", "Order")
-                        .WithMany("LuckyBagReturns")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1680,7 +1737,7 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired();
 
                     b.HasOne("FSH.WebApi.Domain.FunCenter.Order", "Order")
-                        .WithMany("LuckyBagRobbers")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1712,13 +1769,13 @@ namespace Migrators.MSSQL.Migrations.Application
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.LuckyFruitIncome", b =>
                 {
                     b.HasOne("FSH.WebApi.Domain.FunCenter.LuckyFruit", "LuckyFruit")
-                        .WithMany()
+                        .WithMany("LuckyFruitIncomes")
                         .HasForeignKey("LuckyFruitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FSH.WebApi.Domain.FunCenter.Order", "Order")
-                        .WithMany()
+                        .WithMany("LuckyFruitIncomes")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1750,7 +1807,7 @@ namespace Migrators.MSSQL.Migrations.Application
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.LuckyFruitTrack", b =>
                 {
                     b.HasOne("FSH.WebApi.Domain.FunCenter.LuckyFruit", "LuckyFruit")
-                        .WithMany()
+                        .WithMany("LuckyFruitTracks")
                         .HasForeignKey("LuckyFruitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1780,13 +1837,13 @@ namespace Migrators.MSSQL.Migrations.Application
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.MotorRacingIncome", b =>
                 {
                     b.HasOne("FSH.WebApi.Domain.FunCenter.MotorRacing", "MotorRacing")
-                        .WithMany()
+                        .WithMany("MotorRacingIncomes")
                         .HasForeignKey("MotorRacingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FSH.WebApi.Domain.FunCenter.Order", "Order")
-                        .WithMany()
+                        .WithMany("MotorRacingIncomes")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1818,7 +1875,7 @@ namespace Migrators.MSSQL.Migrations.Application
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.MotorRacingTrack", b =>
                 {
                     b.HasOne("FSH.WebApi.Domain.FunCenter.MotorRacing", "MotorRacing")
-                        .WithMany()
+                        .WithMany("MotorRacingTracks")
                         .HasForeignKey("MotorRacingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1877,6 +1934,17 @@ namespace Migrators.MSSQL.Migrations.Application
                         .HasForeignKey("TimelineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.SignInLog", b =>
+                {
+                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", "Player")
+                        .WithMany("SignInLogs")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Timeline", b =>
@@ -1957,27 +2025,35 @@ namespace Migrators.MSSQL.Migrations.Application
                 {
                     b.Navigation("LuckyFruitBets");
 
+                    b.Navigation("LuckyFruitIncomes");
+
                     b.Navigation("LuckyFruitRewards");
+
+                    b.Navigation("LuckyFruitTracks");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.MotorRacing", b =>
                 {
                     b.Navigation("MotorRacingBets");
 
+                    b.Navigation("MotorRacingIncomes");
+
                     b.Navigation("MotorRacingRewards");
+
+                    b.Navigation("MotorRacingTracks");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Order", b =>
                 {
-                    b.Navigation("LuckyBagReturns");
-
-                    b.Navigation("LuckyBagRobbers");
-
                     b.Navigation("LuckyFruitBets");
+
+                    b.Navigation("LuckyFruitIncomes");
 
                     b.Navigation("LuckyFruitRewards");
 
                     b.Navigation("MotorRacingBets");
+
+                    b.Navigation("MotorRacingIncomes");
 
                     b.Navigation("MotorRacingRewards");
 
@@ -1986,11 +2062,11 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Player", b =>
                 {
-                    b.Navigation("LogSignIns");
-
                     b.Navigation("Orders");
 
                     b.Navigation("PlayerBalances");
+
+                    b.Navigation("SignInLogs");
 
                     b.Navigation("Timelines");
                 });

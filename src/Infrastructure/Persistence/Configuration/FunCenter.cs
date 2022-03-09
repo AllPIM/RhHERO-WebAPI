@@ -5,36 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FSH.WebApi.Infrastructure.Persistence.Configuration;
 
-public class GameConfig : IEntityTypeConfiguration<Game>
-{
-    public void Configure(EntityTypeBuilder<Game> builder)
-    {
-        builder
-            .ToTable("Games", SchemaNames.FunCentr)
-            .IsMultiTenant();
-    }
-}
-
-public class BotConfig : IEntityTypeConfiguration<Bot>
-{
-    public void Configure(EntityTypeBuilder<Bot> builder)
-    {
-        builder
-            .ToTable("Bots", SchemaNames.FunCentr)
-            .IsMultiTenant();
-    }
-}
-
-public class BotGameConfig : IEntityTypeConfiguration<BotGame>
-{
-    public void Configure(EntityTypeBuilder<BotGame> builder)
-    {
-        builder
-            .ToTable("BotGame", SchemaNames.FunCentr)
-            .IsMultiTenant();
-    }
-}
-
 public class PlayerConfig : IEntityTypeConfiguration<Player>
 {
     public void Configure(EntityTypeBuilder<Player> builder)
@@ -65,12 +35,32 @@ public class PlayerBalanceConfig : IEntityTypeConfiguration<PlayerBalance>
     }
 }
 
-public class LogSignInConfig : IEntityTypeConfiguration<LogSignIn>
+public class SignInLogConfig : IEntityTypeConfiguration<SignInLog>
 {
-    public void Configure(EntityTypeBuilder<LogSignIn> builder)
+    public void Configure(EntityTypeBuilder<SignInLog> builder)
     {
         builder
-            .ToTable("LogSignIn", SchemaNames.FunCentr)
+            .ToTable("SignInLogs", SchemaNames.FunCentr)
+            .IsMultiTenant();
+    }
+}
+
+public class BotConfig : IEntityTypeConfiguration<Bot>
+{
+    public void Configure(EntityTypeBuilder<Bot> builder)
+    {
+        builder
+            .ToTable("Bots", SchemaNames.FunCentr)
+            .IsMultiTenant();
+    }
+}
+
+public class BotGameConfig : IEntityTypeConfiguration<BotGame>
+{
+    public void Configure(EntityTypeBuilder<BotGame> builder)
+    {
+        builder
+            .ToTable("BotGame", SchemaNames.FunCentr)
             .IsMultiTenant();
     }
 }
@@ -102,10 +92,6 @@ public class TimelineConfig : IEntityTypeConfiguration<Timeline>
         builder
             .ToTable("Timelines", SchemaNames.FunCentr)
             .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(256);
     }
 }
 
@@ -126,10 +112,6 @@ public class MotorRacingConfig : IEntityTypeConfiguration<MotorRacing>
         builder
             .ToTable("MotorRacings", SchemaNames.FunCentr)
             .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(256);
     }
 }
 
@@ -180,10 +162,6 @@ public class LuckyFruitConfig : IEntityTypeConfiguration<LuckyFruit>
         builder
             .ToTable("LuckyFruits", SchemaNames.FunCentr)
             .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(256);
     }
 }
 
@@ -234,10 +212,6 @@ public class LuckyBagConfig : IEntityTypeConfiguration<LuckyBag>
         builder
             .ToTable("LuckyBags", SchemaNames.FunCentr)
             .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(256);
     }
 }
 

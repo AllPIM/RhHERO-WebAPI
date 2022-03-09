@@ -8,7 +8,7 @@ public class MotorRacingsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Mo
 {
     public MotorRacingsBySearchRequestSpec(SearchMotorRacingsRequest request)
         : base(request) =>
-        Query.OrderBy(c => c.Name, !request.HasOrderBy());
+        Query.OrderBy(c => c.Round, !request.HasOrderBy());
 }
 
 public class SearchMotorRacingsRequestHandler : IRequestHandler<SearchMotorRacingsRequest, PaginationResponse<MotorRacingDto>>

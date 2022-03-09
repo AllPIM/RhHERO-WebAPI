@@ -33,34 +33,12 @@ namespace Migrators.MSSQL.Migrations.Application
                 name: "FunCenter");
 
             migrationBuilder.CreateTable(
-                name: "Games",
-                schema: "FunCenter",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GameType = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Games", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LuckyBags",
                 schema: "FunCenter",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -81,8 +59,12 @@ namespace Migrators.MSSQL.Migrations.Application
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReportDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Round = table.Column<int>(type: "int", nullable: true),
+                    Fee = table.Column<int>(type: "int", nullable: true),
+                    Mode = table.Column<int>(type: "int", nullable: true),
+                    Slots = table.Column<int>(type: "int", nullable: true),
+                    Winner = table.Column<int>(type: "int", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -102,8 +84,11 @@ namespace Migrators.MSSQL.Migrations.Application
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReportDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Round = table.Column<int>(type: "int", nullable: true),
+                    Fee = table.Column<int>(type: "int", nullable: true),
+                    Tracks = table.Column<int>(type: "int", nullable: true),
+                    Winner = table.Column<int>(type: "int", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -124,10 +109,8 @@ namespace Migrators.MSSQL.Migrations.Application
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NickName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Os = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Tag = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -148,6 +131,8 @@ namespace Migrators.MSSQL.Migrations.Application
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LuckyFruitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Odds = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Chances = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -175,6 +160,11 @@ namespace Migrators.MSSQL.Migrations.Application
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MotorRacingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Track = table.Column<int>(type: "int", nullable: true),
+                    Motions = table.Column<int>(type: "int", nullable: true),
+                    Speeds = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Lapses = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Seconds = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -201,15 +191,10 @@ namespace Migrators.MSSQL.Migrations.Application
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlayerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AccessOs = table.Column<int>(type: "int", nullable: true),
-                    AccessToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccessCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartType = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    iOSBalance = table.Column<int>(type: "int", nullable: true),
-                    AndroidBalance = table.Column<int>(type: "int", nullable: true),
-                    LastQueried = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -231,50 +216,14 @@ namespace Migrators.MSSQL.Migrations.Application
                 });
 
             migrationBuilder.CreateTable(
-                name: "LogSignIn",
-                schema: "FunCenter",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PlayerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Os = table.Column<int>(type: "int", nullable: false),
-                    Language = table.Column<int>(type: "int", nullable: false),
-                    SceneName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SceneId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoomId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Game = table.Column<int>(type: "int", nullable: true),
-                    Round = table.Column<int>(type: "int", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LogSignIn", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LogSignIn_Players_PlayerId",
-                        column: x => x.PlayerId,
-                        principalSchema: "FunCenter",
-                        principalTable: "Players",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Orders",
                 schema: "FunCenter",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PlayerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Game = table.Column<int>(type: "int", nullable: false),
+                    ChargeOs = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -331,11 +280,16 @@ namespace Migrators.MSSQL.Migrations.Application
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PlayerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NickName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Os = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: true),
+                    LevelDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rank = table.Column<int>(type: "int", nullable: true),
+                    RankDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MBIT = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MBITDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Experience = table.Column<int>(type: "int", nullable: true),
+                    ExpDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -357,15 +311,51 @@ namespace Migrators.MSSQL.Migrations.Application
                 });
 
             migrationBuilder.CreateTable(
+                name: "SignInLogs",
+                schema: "FunCenter",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PlayerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Os = table.Column<int>(type: "int", nullable: false),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SceneName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SceneId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LoginOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LogoutOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SignInLogs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SignInLogs_Players_PlayerId",
+                        column: x => x.PlayerId,
+                        principalSchema: "FunCenter",
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Timelines",
                 schema: "FunCenter",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PlayerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -392,9 +382,9 @@ namespace Migrators.MSSQL.Migrations.Application
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    GameId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BotId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Game = table.Column<int>(type: "int", nullable: false),
                     GameMode = table.Column<int>(type: "int", nullable: false),
-                    BotId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -411,12 +401,6 @@ namespace Migrators.MSSQL.Migrations.Application
                         column: x => x.BotId,
                         principalSchema: "FunCenter",
                         principalTable: "Bots",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_BotGame_Games_GameId",
-                        column: x => x.GameId,
-                        principalSchema: "FunCenter",
-                        principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -497,8 +481,11 @@ namespace Migrators.MSSQL.Migrations.Application
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LuckyFruitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChargeOs = table.Column<int>(type: "int", nullable: false),
+                    Chips = table.Column<int>(type: "int", nullable: false),
+                    Slot = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -534,6 +521,10 @@ namespace Migrators.MSSQL.Migrations.Application
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LuckyFruitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TotalBets = table.Column<int>(type: "int", nullable: false),
+                    TotalRewards = table.Column<int>(type: "int", nullable: false),
+                    Benefits = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -567,8 +558,11 @@ namespace Migrators.MSSQL.Migrations.Application
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LuckyFruitId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Spent = table.Column<int>(type: "int", nullable: false),
+                    Bonus = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -604,6 +598,9 @@ namespace Migrators.MSSQL.Migrations.Application
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MotorRacingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChargeOs = table.Column<int>(type: "int", nullable: false),
+                    Chips = table.Column<int>(type: "int", nullable: false),
+                    Track = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -639,6 +636,10 @@ namespace Migrators.MSSQL.Migrations.Application
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MotorRacingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TotalBets = table.Column<int>(type: "int", nullable: false),
+                    TotalRewards = table.Column<int>(type: "int", nullable: false),
+                    Benefits = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -674,6 +675,9 @@ namespace Migrators.MSSQL.Migrations.Application
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MotorRacingId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Spent = table.Column<int>(type: "int", nullable: false),
+                    Bonus = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -708,6 +712,16 @@ namespace Migrators.MSSQL.Migrations.Application
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ChargeOs = table.Column<int>(type: "int", nullable: false),
+                    Game = table.Column<int>(type: "int", nullable: false),
+                    ReportDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Round = table.Column<int>(type: "int", nullable: true),
+                    Operator = table.Column<int>(type: "int", nullable: false),
+                    Reason = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Balance = table.Column<int>(type: "int", nullable: true),
                     TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -764,21 +778,9 @@ namespace Migrators.MSSQL.Migrations.Application
                 column: "BotId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BotGame_GameId",
-                schema: "FunCenter",
-                table: "BotGame",
-                column: "GameId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Bots_PlayerId",
                 schema: "FunCenter",
                 table: "Bots",
-                column: "PlayerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LogSignIn_PlayerId",
-                schema: "FunCenter",
-                table: "LogSignIn",
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
@@ -920,6 +922,12 @@ namespace Migrators.MSSQL.Migrations.Application
                 column: "TimelineId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SignInLogs_PlayerId",
+                schema: "FunCenter",
+                table: "SignInLogs",
+                column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Timelines_PlayerId",
                 schema: "FunCenter",
                 table: "Timelines",
@@ -930,10 +938,6 @@ namespace Migrators.MSSQL.Migrations.Application
         {
             migrationBuilder.DropTable(
                 name: "BotGame",
-                schema: "FunCenter");
-
-            migrationBuilder.DropTable(
-                name: "LogSignIn",
                 schema: "FunCenter");
 
             migrationBuilder.DropTable(
@@ -993,11 +997,11 @@ namespace Migrators.MSSQL.Migrations.Application
                 schema: "FunCenter");
 
             migrationBuilder.DropTable(
-                name: "Bots",
+                name: "SignInLogs",
                 schema: "FunCenter");
 
             migrationBuilder.DropTable(
-                name: "Games",
+                name: "Bots",
                 schema: "FunCenter");
 
             migrationBuilder.DropTable(

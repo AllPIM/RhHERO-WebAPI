@@ -19,24 +19,23 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Brand> Brands => Set<Brand>();
 
-    public DbSet<Game> Games => Set<Game>();
-    public DbSet<Bot> Bots => Set<Bot>();
-    public DbSet<BotGame> BotGames => Set<BotGame>();
-
     public DbSet<Player> Players => Set<Player>();
     public DbSet<PlayerInfo> PlayerInfo => Set<PlayerInfo>();
     public DbSet<PlayerBalance> PlayerBalances => Set<PlayerBalance>();
-    public DbSet<LogSignIn> LogSignIn => Set<LogSignIn>();
+    public DbSet<SignInLog> SignInLogs => Set<SignInLog>();
+
+    public DbSet<Bot> Bots => Set<Bot>();
+    public DbSet<BotGame> BotGames => Set<BotGame>();
 
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<Payment> Payments => Set<Payment>();
     public DbSet<Timeline> Timelines => Set<Timeline>();
     public DbSet<Reward> Rewards => Set<Reward>();
 
-    public DbSet<MotorRacing> MotoRacings => Set<MotorRacing>();
+    public DbSet<MotorRacing> MotorRacings => Set<MotorRacing>();
     public DbSet<MotorRacingTrack> MotorRacingTracks => Set<MotorRacingTrack>();
-    public DbSet<MotorRacingBet> MotoRacingBets => Set<MotorRacingBet>();
-    public DbSet<MotorRacingReward> MotoRacingRewards => Set<MotorRacingReward>();
+    public DbSet<MotorRacingBet> MotorRacingBets => Set<MotorRacingBet>();
+    public DbSet<MotorRacingReward> MotorRacingRewards => Set<MotorRacingReward>();
     public DbSet<MotorRacingIncome> MotorRacingIncomes => Set<MotorRacingIncome>();
 
     public DbSet<LuckyFruit> LuckyFruits => Set<LuckyFruit>();

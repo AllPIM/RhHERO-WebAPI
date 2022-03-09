@@ -2,22 +2,15 @@
 
 public class LuckyFruit : AuditableEntity, IAggregateRoot
 {
-    public string Name { get; private set; }
-    public string? Description { get; private set; }
+    public string? ReportDate { get; set; }
+    public int? Round { get; set; }
+    public int? Fee { get; set; }
+    public int? Mode { get; set; }
+    public int? Slots { get; set; }
+    public int? Winner { get; set; }
 
     public IList<LuckyFruitBet>? LuckyFruitBets { get; set; } = new List<LuckyFruitBet>();
     public IList<LuckyFruitReward>? LuckyFruitRewards { get; set; } = new List<LuckyFruitReward>();
-
-    public LuckyFruit(string name, string? description)
-    {
-        Name = name;
-        Description = description;
-    }
-
-    public LuckyFruit Update(string? name, string? description)
-    {
-        if (name is not null && Name?.Equals(name) is not true) Name = name;
-        if (description is not null && Description?.Equals(description) is not true) Description = description;
-        return this;
-    }
+    public IList<LuckyFruitIncome>? LuckyFruitIncomes { get; set; } = new List<LuckyFruitIncome>();
+    public IList<LuckyFruitTrack>? LuckyFruitTracks { get; set; } = new List<LuckyFruitTrack>();
 }

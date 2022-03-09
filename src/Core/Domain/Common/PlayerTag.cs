@@ -1,8 +1,8 @@
 ﻿namespace FSH.WebApi.Domain.Common;
 
-public enum UserType
+public enum PlayerTag
 {
-    Normal,
+    Base,
     Operator,
     Bot,
     Special,
