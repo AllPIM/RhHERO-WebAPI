@@ -234,3 +234,13 @@ public class LuckyBagReturnConfig : IEntityTypeConfiguration<LuckyBagReturn>
             .IsMultiTenant();
     }
 }
+
+public class FingerGuessingConfig : IEntityTypeConfiguration<FingerGuessing>
+{
+    public void Configure(EntityTypeBuilder<FingerGuessing> builder)
+    {
+        builder
+            .ToTable("FingerGuessings", SchemaNames.FunCentr)
+            .IsMultiTenant();
+    }
+}

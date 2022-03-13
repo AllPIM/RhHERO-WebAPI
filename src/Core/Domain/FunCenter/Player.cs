@@ -6,6 +6,9 @@ public class Player : AuditableEntity, IAggregateRoot
     public PlayerStatus Status { get; set; }
     public PlayerTag Tag { get; set; }
 
+    public virtual PlayerInfo? PlayerInfo { get; set; }
+    public virtual Bot? Bot { get; set; }
+
     public IList<PlayerBalance>? PlayerBalances { get; set; } = new List<PlayerBalance>();
     public IList<Timeline>? Timelines { get; set; } = new List<Timeline>();
     public IList<Order>? Orders { get; set; } = new List<Order>();

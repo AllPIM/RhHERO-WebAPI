@@ -48,6 +48,8 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<LuckyBagRobber> LuckyBagRobbers => Set<LuckyBagRobber>();
     public DbSet<LuckyBagReturn> LuckyBagReturns => Set<LuckyBagReturn>();
 
+    public DbSet<FingerGuessing> FingerGuessings => Set<FingerGuessing>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

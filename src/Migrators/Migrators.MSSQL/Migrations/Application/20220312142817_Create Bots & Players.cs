@@ -33,6 +33,27 @@ namespace Migrators.MSSQL.Migrations.Application
                 name: "FunCenter");
 
             migrationBuilder.CreateTable(
+                name: "FingerGuessings",
+                schema: "FunCenter",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TenantId = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FingerGuessings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LuckyBags",
                 schema: "FunCenter",
                 columns: table => new
@@ -781,7 +802,8 @@ namespace Migrators.MSSQL.Migrations.Application
                 name: "IX_Bots_PlayerId",
                 schema: "FunCenter",
                 table: "Bots",
-                column: "PlayerId");
+                column: "PlayerId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_LuckyBagReturns_LuckyBagId",
@@ -913,7 +935,8 @@ namespace Migrators.MSSQL.Migrations.Application
                 name: "IX_PlayerInfo_PlayerId",
                 schema: "FunCenter",
                 table: "PlayerInfo",
-                column: "PlayerId");
+                column: "PlayerId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rewards_TimelineId",
@@ -938,6 +961,10 @@ namespace Migrators.MSSQL.Migrations.Application
         {
             migrationBuilder.DropTable(
                 name: "BotGame",
+                schema: "FunCenter");
+
+            migrationBuilder.DropTable(
+                name: "FingerGuessings",
                 schema: "FunCenter");
 
             migrationBuilder.DropTable(

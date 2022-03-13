@@ -166,7 +166,8 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("PlayerId")
+                        .IsUnique();
 
                     b.ToTable("Bots", "FunCenter");
 
@@ -216,6 +217,49 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasIndex("BotId");
 
                     b.ToTable("BotGame", "FunCenter");
+
+                    b.HasAnnotation("Finbuckle:MultiTenant", true);
+                });
+
+            modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.FingerGuessing", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenantId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FingerGuessings", "FunCenter");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -1173,7 +1217,8 @@ namespace Migrators.MSSQL.Migrations.Application
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerId");
+                    b.HasIndex("PlayerId")
+                        .IsUnique();
 
                     b.ToTable("PlayerInfo", "FunCenter");
 
@@ -1687,13 +1732,11 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Bot", b =>
                 {
-                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
+                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", null)
+                        .WithOne("Bot")
+                        .HasForeignKey("FSH.WebApi.Domain.FunCenter.Bot", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.BotGame", b =>
@@ -1916,13 +1959,11 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.PlayerInfo", b =>
                 {
-                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
+                    b.HasOne("FSH.WebApi.Domain.FunCenter.Player", null)
+                        .WithOne("PlayerInfo")
+                        .HasForeignKey("FSH.WebApi.Domain.FunCenter.PlayerInfo", "PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Reward", b =>
@@ -2060,9 +2101,13 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("FSH.WebApi.Domain.FunCenter.Player", b =>
                 {
+                    b.Navigation("Bot");
+
                     b.Navigation("Orders");
 
                     b.Navigation("PlayerBalances");
+
+                    b.Navigation("PlayerInfo");
 
                     b.Navigation("SignInLogs");
 

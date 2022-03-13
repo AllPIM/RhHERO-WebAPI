@@ -22,10 +22,19 @@
       <None Remove="FunCenter\" />
       <None Remove="FunCenter\MotorRacings\" />
       <None Remove="FunCenter\LuckyFruits\" />
+      <None Remove="FunCenter\Bot\" />
+      <None Remove="FunCenter\LuckyBag\" />
+      <None Remove="FunCenter\FingerGuessings\" />
+      <None Remove="FunCenter\Orders\" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="FunCenter\" />
       <Folder Include="FunCenter\MotorRacings\" />
       <Folder Include="FunCenter\LuckyFruits\" />
+      <Folder Include="FunCenter\Players\" />
+      <Folder Include="FunCenter\Bots\" />
+      <Folder Include="FunCenter\LuckyBags\" />
+      <Folder Include="FunCenter\FingerGuessings\" />
+      <Folder Include="FunCenter\Orders\" />
     </ItemGroup>
 </Project>
