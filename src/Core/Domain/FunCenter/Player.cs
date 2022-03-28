@@ -13,4 +13,10 @@ public class Player : AuditableEntity, IAggregateRoot
     public IList<Timeline>? Timelines { get; set; } = new List<Timeline>();
     public IList<Order>? Orders { get; set; } = new List<Order>();
     public IList<SignInLog>? SignInLogs { get; set; } = new List<SignInLog>();
+
+    public Player Update(string? name)
+    {
+        if (name is not null && Name?.Equals(name) is not true) Name = name;
+        return this;
+    }
 }

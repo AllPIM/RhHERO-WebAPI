@@ -6,6 +6,8 @@ public class PlayerDetailDto : IDto
     public string Name { get; set; } = default!;
     public PlayerStatus Status { get; set; }
     public PlayerTag Tag { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
 
     public Guid PlayerInfoId { get; set; }
     public virtual PlayerInfo PlayerInfo { get; private set; } = default!;
